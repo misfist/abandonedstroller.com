@@ -9,12 +9,12 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby WordPress Twenty Twenty`,
-    description: `Gatsby starter site for Twenty Twenty Gatsby Theme.`,
-    author: `@henrikwirth`,
+    title: `Abandoned Strollers`,
+    description: `Where have all the children gone...`,
+    author: `@misfist`,
   },
   plugins: [
-    `gatsby-plugin-notifications`,
+    // `gatsby-plugin-notifications`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
