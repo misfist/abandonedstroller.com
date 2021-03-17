@@ -8,15 +8,24 @@ const Footer = ({}) => {
         <div className="footer-credits">
           <p className="footer-copyright">
             © {new Date().getFullYear()}{" "}
-            <Link to={"/"}>Gatsby Starter WordPress Twenty Twenty</Link>
+            <Link to={"/"}>Abandoned Stroller</Link>
           </p>
           <p>
+            Proudly built with
             <a
               className="powered-by-wordpress"
-              href="https://www.henrikwirth.com"
+              href="https://wordpress.com"
               rel="noreferrer noopener"
             >
-              Proudly presented by Henrik Wirth
+              WordPress
+            </a>
+            and
+            <a
+              className="powered-by-wordpress"
+              href="https://www.gatsbyjs.com"
+              rel="noreferrer noopener"
+            >
+              Gatsby
             </a>
           </p>
         </div>
