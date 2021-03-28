@@ -1,41 +1,40 @@
-import React, { useState } from "react"
+import React from 'react'
+import Helmet from 'react-helmet'
+import classNames from 'classnames'
+import slugify from 'slugify'
+import Seo from './Seo';
 import Header from "./Header"
 import Footer from "./Footer"
 
-import FooterMenusWidgets from "./FooterMenusWidgets"
-import MenuModal from "./MenuModal"
+import Menu from './Menu'
 
-const backdropClasses = " backdrop"
 
-const Layout = ({ children, bodyClass }) => {
-  const [backdropActive, setBackdropActive] = useState(false)
+const Layout = ({ children, title, description, bodyClass }) => {
+  const slug = slugify( title, { lower: true } );
 
-  const toggleBackdrop = (e, active) => {
-    e.preventDefault()
-    setBackdropActive(active)
-  }
+  const bodyClasses = classNames(
+    bodyClass,
+    `page-${slug}`
+  );
 
   return (
-    <div
-      id={"GatsbyBody"}
-      className={
-        bodyClass +
-        " showing-menu-modal showing-modal" +
-        (backdropActive ? backdropClasses : "")
-      }
-    >
-      <Header toggleBackdrop={toggleBackdrop} />
+    <>
+      <Helmet
+        bodyAttributes={{
+            class: bodyClasses
+        }}
+      />
 
-      <MenuModal isActive={backdropActive} toggleBackdrop={toggleBackdrop} />
+      <Seo title={title} description={description} />
+
+      <Header />
 
       <main id="site-content" role="main">
         {children}
       </main>
 
-      <FooterMenusWidgets />
-
       <Footer />
-    </div>
+    </>
   )
 }
 

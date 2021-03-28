@@ -1,0 +1,478 @@
+// Rem output with px fallback
+@mixin font-size($sizeValue: 1) {
+	font-size: ($sizeValue * 16) * 1px;
+	font-size: $sizeValue * 1rem;
+}
+
+// Center block
+@mixin center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Clearfix
+@mixin clearfix() {
+	content: "";
+	display: table;
+	table-layout: fixed;
+}
+
+// Clear after (not all clearfix need this also)
+@mixin clearfix-after() {
+	clear: both;
+}
+
+@mixin columns($column-count:2, $column-gap:2rem) {
+	column-count: $column-count;
+	column-gap: $column-gap;
+}
+
+@mixin dot($fill: transparent, $border: $accent-color) {
+	height: 1.125rem;
+	width: 1.125rem;
+	background-color: $fill;
+	border-radius: 50%;
+	display: inline-block;
+	border: 2px solid $border;
+}
+
+@mixin filter-duotone {
+	&::before {
+		background: $color__link;
+		mix-blend-mode: screen;
+		opacity: 0.1;
+		z-index: 2;
+	}
+
+	&::after {
+		background: $color__link;
+		mix-blend-mode: multiply;
+		opacity: 0.8;
+		z-index: 3;
+
+		/* Browsers supporting mix-blend-mode don't need opacity < 1 */
+		@supports (mix-blend-mode: multiply) {
+			opacity: 1;
+		}
+	}
+}
+
+@mixin filter-grayscale {
+	filter: grayscale(100%);
+	position: relative;
+	z-index: 1;
+
+	&::after {
+		display: block;
+		height: 100%;
+		width: 100%;
+		z-index: 10;
+	}
+}
+
+/* If we add the border using a regular CSS border, it won't look good on non-retina devices,
+ * since its edges can look jagged due to lack of antialiasing. In this case, we are several
+ * layers of box-shadow to add the border visually, which will render the border smoother. */
+
+@mixin box-shadow($size) {
+	box-shadow: 0 0 0 $size $color__text-light inset, 0 0 0 ($size + 1px) $color__text-light inset,
+		0 0 1px 0 rgba($color__text-light, 0.7);
+
+	// Antialiasing, outer edge.
+}
+
+@mixin flex($wrap: wrap) {
+	display: flex;
+	flex-wrap: $wrap;
+}
+
+@mixin fullwidth {
+	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
+	max-width: 100vw;
+	min-width: 100vw;
+	width: 100vw;
+}
+
+@mixin truncate-text( $lines: 3, $line-height: 1.3rem ) {
+	max-height: calc( #{$line-height} * #{$lines} );
+	text-overflow: ellipsis;
+
+	@supports ( block-overflow: ellipsis ) {
+		block-overflow: ellipsis;
+	}
+
+	@supports ( display: -webkit-box ) {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: $lines;
+	}
+
+	/* Required for text-overflow to do anything */
+	overflow: hidden;
+}
+
+/* Breakpoints */
+@mixin breakpoint($breakpoint, $condition: min) {
+	// If $breakpoint is a key that exists in
+	// $breakpoints, get and use the value
+
+	@if map-has-key($breakpoints, $breakpoint) {
+	  $breakpoint: map-get($breakpoints, $breakpoint);
+	}
+
+
+	@if max == $condition {
+		@media only screen and (max-width: #{$breakpoint - 1px}) {
+			@content;
+		}
+	}
+	@else {
+		@media only screen and (min-width: #{$breakpoint}) {
+			@content;
+		}
+	}
+	
+}
+
+@mixin link-transition($attr: color) {
+	transition: $attr $link_transition ease-in-out;
+}
+
+@mixin button-transition {
+	transition: background $button_transition ease-in-out;
+}
+
+@mixin button-all-transition {
+	transition: all $button_transition ease-in-out;
+}
+
+@mixin background-transition {
+	transition: background $background_transition ease-in-out;
+}
+
+@mixin selection {
+	::-moz-selection {
+		@content;
+	}
+
+	::selection {
+		@content;
+	}
+}
+
+@mixin no-bullets {
+	list-style: none;
+	margin-bottom: 0;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+/**
+ * Visually hidden content
+ */
+@mixin visually-hidden {
+	clip: rect(1px 1px 1px 1px);
+
+	/* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	position: absolute !important;
+	white-space: nowrap;
+	width: 1px;
+
+	/* added line */
+}
+
+/* @see https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/ */
+@mixin dont-break-out {
+	/* Adds a hyphen where the word breaks, if supported (No Blink) */
+	-ms-hyphens: auto;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+
+	/* These are technically the same, but use both */
+	overflow-wrap: break-word;
+	-ms-word-break: break-all;
+
+	/* This is the dangerous one in WebKit, as it breaks things wherever */
+	word-break: break-all;
+
+	/* Instead use this non-standard one: */
+	word-break: break-word;
+	word-wrap: break-word;
+}
+
+
+@mixin container($max-width: $size__container, $margins: $size__site-margins) {
+	padding-left: $margins;
+	padding-right: $margins;
+
+	@include breakpoint(large) {
+		margin-left: auto;
+		margin-right: auto;
+		max-width: $max-width;
+		width: 100%;
+	}
+}
+
+@mixin star( $color: $color__secondary ) {
+	position: relative;
+	
+	display: inline-block;
+	width: 0;
+	height: 0;
+	
+	margin-left: .9em;
+	margin-right: .9em;
+	margin-bottom: 1.2em;
+	
+	border-right:  .3em solid transparent;
+	border-bottom: .7em  solid $color;
+	border-left:   .3em solid transparent;
+  
+	/* Controls the size of the stars. */
+	font-size: 24px;
+	
+	&:before, 
+	&:after {
+	  content: '';
+	  
+	  display: block;
+	  width: 0;
+	  height: 0;
+	  
+	  position: absolute;
+	  top: .6em;
+	  left: -1em;
+	
+	  border-right:  1em solid transparent;
+	  border-bottom: .7em  solid $color;
+	  border-left:   1em solid transparent;
+	
+	  transform: rotate(-35deg);
+	}
+	
+	&:after {  
+	  transform: rotate(35deg);
+	}
+}
+
+@mixin ribbon( $color: $color__secondary ) {
+	position: relative;
+	background: $color;
+	height: 100px;
+	width: 100px;
+	border-radius: 50px;
+
+	&:before,
+	&:after {
+		content: '';
+		position: absolute;
+		border-bottom: 70px solid $color;
+		border-left: 40px solid transparent;
+		border-right: 40px solid transparent;
+		top: 70px;
+		left: -10px;
+		transform: rotate(-140deg);
+	}
+	&:after {
+		left: auto;
+		right: -10px;
+		transform: rotate(140deg);
+	}
+}
+
+@mixin heart( $color: $color__secondary ) {
+	position: relative;
+	width: 100px;
+	height: 90px;
+
+	&:before,
+	&:after {
+		position: absolute;
+		content: "";
+		left: 50px;
+		top: 0;
+		width: 50px;
+		height: 80px;
+		background: $color;
+		border-radius: 50px 50px 0 0;
+		transform: rotate(-45deg);
+		transform-origin: 0 100%;
+	}
+
+	&:after {
+		left: 0;
+		transform: rotate(45deg);
+		transform-origin: 100% 100%;
+	}
+
+}
+
+/**
+ * Functions
+ */
+@function rem-calc($size) {
+	$remSize: $size / $base_unit;
+
+	@return #{$remSize}rem;
+}
+
+@function px-calc($ptSize) {
+	$pixelSize: $ptSize * 1.3333333333;
+
+	@return #{pixelSize}px;
+}
+
+@function rem-pt-calc($ptSize) {
+	$size: px-calc($ptSize);
+
+	@return rem-calc($size);
+}
+
+/// Get color from $color-palette
+///
+/// @param {key} color key from $color-palette
+///
+/// @returns {Color} color from $color-palette
+@function get-color($key) {
+	@if map-has-key($color-palette, $key) {
+		@return map-get($color-palette, $key);
+	} @else {
+		@error "given $key is not available in $color-palette";
+	}
+}
+
+@function str-replace($string, $search, $replace: '') {
+	$index: str-index($string, $search);
+
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace +
+			str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+
+	@return $string;
+}
+
+/**
+ * Font Face
+ */
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+	$src: null;
+
+	$extmods: (
+		eot: '?',
+		svg: '#' + str-replace($name, ' ', '_')
+	);
+
+	$formats: (
+		otf: 'opentype',
+		ttf: 'truetype'
+	);
+
+	@each $ext in $exts {
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($path + '.' + $extmod)) format(quote($format)), comma);
+	}
+
+	@font-face {
+		font-display: swap;
+		font-family: quote($name);
+		font-style: $style;
+		font-weight: $weight;
+		src: $src;
+	}
+}
+
+////
+// A collection of function for advanced type checking
+// @author Hugo Giraudel
+////
+
+@function is-number($value) {
+	@return type-of($value) == 'number';
+}
+
+@function is-time($value) {
+	@return is-number($value) and index('ms' 's', unit($value)) != null;
+}
+
+@function is-duration($value) {
+	@return is-time($value);
+}
+
+@function is-angle($value) {
+	@return is-number($value) and index('deg' 'rad' 'grad' 'turn', unit($value)) != null;
+}
+
+@function is-frequency($value) {
+	@return is-number($value) and index('Hz' 'kHz', unit($value)) != null;
+}
+
+@function is-integer($value) {
+	@return is-number($value) and round($value) == $value;
+}
+
+@function is-relative-length($value) {
+	@return is-number($value) and index('em' 'ex' 'ch' 'rem' 'vw' 'vh' 'vmin' 'vmax', unit($value)) != null;
+}
+
+@function is-absolute-length($value) {
+	@return is-number($value) and index('cm' 'mm' 'in' 'px' 'pt' 'pc', unit($value)) != null;
+}
+
+@function is-percentage($value) {
+	@return is-number($value) and unit($value) == '%';
+}
+
+@function is-length($value) {
+	@return is-relative-length($value) or is-absolute-length($value);
+}
+
+@function is-resolution($value) {
+	@return is-number($value) and index('dpi' 'dpcm' 'dppx', unit($value)) != null;
+}
+
+@function is-position($value) {
+	@return is-length($value) or is-percentage($value) or index('top' 'right' 'bottom' 'left' 'center', $value) != null;
+}
+
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+//@extend-elements
+%hover-transparent {
+	color: $color__white;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	transition: opacity 0.35s, transform 0.35s;
+	transform: translate3d(100%,0,0);
+}
+%hover-opaque {
+	color: $color__white;
+	opacity: 1;
+	filter: alpha(opacity=100);
+	transform: translate3d(0,0,0);
+}
+
+%dot {
+	height: 1.25rem;
+	width: 1.25rem;
+	background-color: orange;
+	border-radius: 50%;
+	display: inline-block;
+	border: 1px solid gray;
+}

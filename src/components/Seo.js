@@ -10,14 +10,12 @@ function Seo({ description, lang, meta, keywords, title }) {
       render={(data) => {
         const metaDescription =
           description ||
-          data.wp.generalSettings.description ||
           data.site.siteMetadata.description
         const titleText = title
           ? `${title} | ${
-              data.wp.generalSettings.description ||
               data.site.siteMetadata.title
             }`
-          : data.wp.generalSettings.description || data.site.siteMetadata.title
+          : data.site.siteMetadata.title
         return (
           <Helmet
             htmlAttributes={{
@@ -96,12 +94,6 @@ const detailsQuery = graphql`
         title
         description
         author
-      }
-    }
-    wp {
-      generalSettings {
-        title
-        description
       }
     }
   }

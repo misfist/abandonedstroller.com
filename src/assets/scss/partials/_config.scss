@@ -1,0 +1,246 @@
+/**
+ * Colors
+ */
+$color__white: #fff;
+$color__black: #000;
+
+$color__white:    $color__white;
+$color__black-10: #e5e5e5;
+$color__black-20: #cccccc;
+$color__black-30: #b2b2b2;
+$color__black-40: #999;
+$color__black-50: #7f7f7f;
+$color__black-60: #666;
+$color__black-70: #4c4c4c;
+$color__black-80: #333;
+$color__black-90: #191919;
+$black:    $color__black;
+
+$color__palette: (
+    primary: $color__black-90,
+    secondary: #cc0000,
+    accent: $color__black-50,
+    error: rgba(255, 20, 147, 1),
+    dark-gray: $color__black-80,
+    gray: $color__black-60,
+    light-gray: $color__black-20,
+);
+
+$color__primary: map-get( $color__palette, primary );
+$color__secondary: map-get( $color__palette, secondary );
+$color__accent: map-get( $color__palette, accent );
+$color__error: map-get( $color__palette, error );
+$color__dark-gray: map-get( $color__palette, dark-gray );
+$color__gray: map-get( $color__palette, gray );
+$color__light-gray: map-get( $color__palette, light-gray );
+
+$color__background-body: $color__black;
+$color__background-header: $color__black;
+$color__background-screen: $color__accent;
+$color__background-hr: $color__black-20;
+$color__background-button: $color__secondary;
+$color__background-button-hover: $color__black;
+$color__background-pre: #eee;
+$color__background-ins: $color__white;
+$color__background-input: $color__white;
+
+$color__text-main: $color__white;
+$color__text-secondary: $color__gray;
+$color__link: $color__white;
+$color__text-muted: $color__gray;
+$color__headings: $color__primary;
+$color__text-screen: $color__dark-gray;
+$color__text-input: $color__dark-gray;
+$color__text-input-focus: $color__black;
+
+$color__border-button: transparent;
+$color__border-button-hover: transparent;
+$color__border-button-focus: transparent;
+$color__border-input: $color__light-gray;
+$color__border-abbr: $color__gray;
+$color__border-table: $color__light-gray;
+
+$color__lines: #f3f9fd;
+$color__border-comments: #ebeef1;
+
+$color__reply-link: #64c0f4;
+$color__borders-pullquote: #dbdee1;
+$color__background-pullquote: #f2f9fd;
+$color__border-recent-posts: #eaedef;
+
+// $header__gradient: linear-gradient(to bottom, rgb(247, 251, 254) 0%, rgba(255, 255, 255, 0) 304px);
+$background__dropdown-menu: #f2f9fd;
+$background__dotted-border: #f1f4f7;
+$background__sticky-post-pin: $color__secondary;
+
+$background__tags: $color__light-gray;
+$background__post-navigation: #f3f8fb;
+$background__search-modal: rgba(242, 249, 253, .98);
+$background__mobile-menu: rgba(242, 249, 253, .98);
+
+ /**
+  * Typography
+  */
+$font__fancy: 'Rock Salt', sans-serif;
+$font__main: 'Montserrat', sans-serif;
+$font__headings: $font__fancy;
+$font__code: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+$font__pre: "Courier 10 Pitch", Courier, monospace;
+// $font__line-height-body: 1.75;
+$font__size-body: 1.6rem;
+$font__line-height-body: 150%;
+$font__line-height-pre: 1.6;
+$font__size-base: 16px;
+$font__size-base-sm: calc( #{$font__size-base} * .8 );
+$font__size-base-lg: calc( #{$font__size-base} * 1.2 );
+ 
+$font__sizes: (
+    sm: .9rem,
+    normal: 1rem,
+    md: 1.25rem,
+    intro: 1.8rem, // slightly bigger
+    entry-header: 2.4rem, //38.4
+    lg: 2.5rem, // h3
+    xl: 3.25rem, // h2
+    2xl: 4rem, // h1 64px
+);
+ 
+$font__size-entry-header: map-get( $font__sizes, entry-header );
+$font__size-sm: map-get( $font__sizes, sm );
+$font__size-normal: map-get( $font__sizes, normal );
+$font__size-md: map-get( $font__sizes, md );
+$font__size-lg: map-get( $font__sizes, lg );
+$font__size-xl: map-get( $font__sizes, xl );
+$font__size-2xl: map-get( $font__sizes, 2xl );
+$font__size-intro: map-get( $font__sizes, intro );
+ 
+$font__weights: (
+    normal: 400,
+    bold: 700,
+    black: 900
+);
+
+$font__weight-normal: map-get( $font__weights, normal );
+$font__weight-bold: map-get( $font__weights, bold );
+$font__weight-black: map-get( $font__weights, black );
+
+$font__line-height-none: 1;
+$font__line-height-tight: 1.1;
+$font__line-height-normal: 1.4;
+$font__line-height-relaxed: 1.625;
+
+/**
+ * Effects
+ */
+$effect__drop-shadow: 0 20px 25px -5px $color__black-10, 0 10px 10px -5px $color__black-10;
+
+ /**
+  * Structure
+  */
+ $widths: (
+    mobile: 355px,
+    tablet: 790px,
+    md: 54rem, // 864
+    lg: 57rem, // 912
+    x-lg: 66rem, //1056
+    2x-lg: 72rem, //1168
+    3x-lg: 82rem, //1312
+    4x-lg: 88rem,
+    full: 100%,
+);
+
+$breakpoints: (
+    mobile: 375px,
+    tablet: 750px,
+    sm: 40rem, //640s
+    md: 52rem, //832
+    lg: 58rem, //928
+    x-lg: 64rem, //1056
+    2x-lg: 75rem, //1200
+    3x-lg: 80rem, //1312
+    4x-lg: 86rem,
+);
+
+$site__width_sm: map-get( $widths, sm );
+$site__width_mobile: map-get( $widths, mobile );
+$site__width_tablet: map-get( $widths, tablet );
+$site__width_md: map-get( $widths, md );
+$site__width_lg: map-get( $widths, lg );
+$site__width_x-lg: map-get( $widths, x-lg );
+$site__width_2x-lg: map-get( $widths, 2x-lg );
+$site__width_3x-lg: map-get( $widths, 3x-lg );
+$site__width_4x-lg: map-get( $widths, 4x-lg );
+$site__width_full: map-get( $widths, full );
+
+$size__width-content: $site__width_x-lg;
+$site__max-width: $site__width_2x-lg;
+
+$padding-site: 95px;
+$padding-site-mobile: 25px;
+
+$site__margins-min: 4.4rem;
+$site__margins-max: 6rem;
+
+/**
+ * Spacing
+ */
+
+$border__radius: 0;
+
+$spacing: (
+    0: 0,
+    1: 0.25rem,
+    2: 0.5rem,
+    3: 0.75rem,
+    4: 1rem,
+    5: 1.25rem,
+    6: 1.5rem,
+    8: 2rem,
+    10: 2.5rem,
+    12: 3rem,
+    16: 4rem,
+    20: 5rem,
+    24: 6rem,
+    32: 8rem,
+);
+
+$size__spacing-0: map-get( $spacing, 0 );
+$size__spacing-1: map-get( $spacing, 1 );
+$size__spacing-2: map-get( $spacing, 2 );
+$size__spacing-3: map-get( $spacing, 3 );
+$size__spacing-4: map-get( $spacing, 4 );
+$size__spacing-5: map-get( $spacing, 5 );
+$size__spacing-6: map-get( $spacing, 6 );
+$size__spacing-8: map-get( $spacing, 8 );
+$size__spacing-10: map-get( $spacing, 10 );
+$size__spacing-12: map-get( $spacing, 12 );
+$size__spacing-16: map-get( $spacing, 16 );
+$size__spacing-20: map-get( $spacing, 20 );
+$size__spacing-24: map-get( $spacing, 24 );
+$size__spacing-32: map-get( $spacing, 32 );
+
+:root {
+	--color__primary: $color__primary;
+	--color__white: $color__white;
+	--color__light: $color__black-60;
+	--size__mobile: 768px;
+	--size__tablet: 924px;
+	--size__lg: 1024px;
+	--size__x-lg: 1142px;
+	--size__max-width: 1200px;
+	--border__radius-sm: 0.25rem;
+	--border__radius-md: 0.5rem;
+	--border__radius-lg: 1rem;
+	--border__radius-xl: 2rem;
+	--padding__sm: 0.25rem;
+	--padding__md: 0.5rem;
+	--padding__lg: 1rem;
+	--padding__xl: 2rem;
+	--box__shadow-lg: 0 20px 25px -5px $color__black-10, 0 10px 10px -5px $color__black-10;
+	--font__size-sm: .9rem;
+	--font__size-md: 1.25rem;
+	--font__size-lg: 2.5rem;
+	--font__size-xl: 3.25rem;
+	--font__size-base: 16px;
+}
+

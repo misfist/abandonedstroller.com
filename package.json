@@ -1,38 +1,71 @@
 {
-  "name": "gatsby-starter-wordpress-twenty-twenty",
-  "description": "Gatsby port of the WordPress Twenty Twenty theme.",
-  "license": "SEE LICENSE IN <LICENSE>",
-  "version": "0.0.1",
-  "author": {
-    "name": "Henrik Wirth",
-    "email": "info@henrikwirth.de"
-  },
-  "scripts": {
-    "develop": "gatsby develop",
-    "clean": "gatsby clean",
-    "build": "gatsby build",
-    "cdev": "gatsby clean && gatsby develop",
-    "cbuild": "gatsby clean && gatsby build",
-    "start": "npm run develop",
-    "serve": "gatsby serve"
-  },
+  "name": "abandoned-stroller",
+  "description": "Abandoned strollers presented with WordPress and Gatsby",
+  "version": "0.1.0",
+  "author": "misfist",
   "dependencies": {
-    "dotenv": "^8.2.0",
+    "@fontsource/merriweather": "^4.2.2",
+    "@fontsource/montserrat": "^4.2.2",
+    "@fontsource/rock-salt": "^4.2.2",
+    "@wordpress/block-library": "^2.29.0",
+    "bulma": "^0.7.5",
+    "classnames": "^2.2.6",
     "gatsby": "^2.32.3",
-    "gatsby-image": "^2.11.0",
-    "gatsby-plugin-netlify-cache": "^1.2.0",
-    "gatsby-plugin-notifications": "^0.0.2",
-    "gatsby-plugin-react-svg": "^3.0.0",
-    "gatsby-plugin-sharp": "^2.14.1",
-    "gatsby-source-filesystem": "^2.11.0",
-    "gatsby-source-wordpress": "^4.0.1",
-    "gatsby-transformer-sharp": "^2.12.0",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0"
+    "gatsby-awesome-pagination": "^0.3.3",
+    "gatsby-plugin-htaccess": "^1.4.0",
+    "gatsby-plugin-image": "^1.1.2",
+    "gatsby-plugin-lodash": "^3.1.7",
+    "gatsby-plugin-react-helmet": "^3.1.7",
+    "gatsby-plugin-sass": "^2.1.14",
+    "gatsby-plugin-sharp": "^2.2.21",
+    "gatsby-remark-images": "^3.1.21",
+    "gatsby-source-filesystem": "^2.1.22",
+    "gatsby-source-wordpress": "^4.0.0",
+    "gatsby-transformer-remark": "^2.6.22",
+    "gatsby-transformer-sharp": "^2.2.14",
+    "html-react-parser": "^1.1.1",
+    "masonic": "^3.4.1",
+    "node-sass": "^4.0.0",
+    "normalize.css": "^8.0.1",
+    "parcel-bundler": "^1.12.3",
+    "prop-types": "^15.6.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-grid-gallery": "^0.5.5",
+    "react-helmet": "^5.2.1",
+    "react-image-lightbox": "^5.1.1",
+    "react-images": "^1.2.0-beta.6",
+    "react-photo-gallery": "^8.0.0",
+    "rebass": "^4.0.7",
+    "sass": "^1.32.8",
+    "slugify": "^1.5.0",
+    "uuid": "^3.3.3",
+    "yup": "^0.32.9"
+  },
+  "keywords": [
+    "gatsby",
+    "wordpress"
+  ],
+  "license": "MIT",
+  "main": "n/a",
+  "scripts": {
+    "start": "npm run develop",
+    "clean": "rimraf .cache public",
+    "build": "npm run clean && gatsby build",
+    "develop": "npm run clean && gatsby develop",
+    "serve": "gatsby serve",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "prettier": "^2.2.1"
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.3.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": false,
+    "singleQuote": true
   }
 }

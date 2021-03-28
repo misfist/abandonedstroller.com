@@ -10,40 +10,39 @@ const Footer = ({}) => {
             © {new Date().getFullYear()}{" "}
             <Link to={"/"}>Abandoned Stroller</Link>
           </p>
-          <p>
+          <p className="powered-by-wordpress">
             Proudly built with
+            {" "}
             <a
-              className="powered-by-wordpress"
               href="https://wordpress.com"
               rel="noreferrer noopener"
+              target="_blank"
             >
-              WordPress
+              WordPress 
             </a>
+            {" "}
             and
+            {" "}
             <a
-              className="powered-by-wordpress"
               href="https://www.gatsbyjs.com"
               rel="noreferrer noopener"
+              target="_blank"
             >
               Gatsby
             </a>
           </p>
         </div>
 
-        <a className="to-the-top" href="#site-header">
-          <span className="to-the-top-long">
-            To the top{" "}
-            <span className="arrow" aria-hidden="true">
-              ↑
-            </span>
-          </span>
-          <span className="to-the-top-short">
-            Up{" "}
-            <span className="arrow" aria-hidden="true">
-              ↑
-            </span>
-          </span>
-        </a>
+        
+          <div className="to-the-top-wrapper">
+            <a className="to-the-top-link" aria-label="Scroll to Top" href="#site-header">
+              <span className="screen-reader-text">To the top{" "}</span>
+              <span className="arrow" aria-hidden="true">
+                ↑
+              </span>
+            </a>
+          </div>
+        
       </div>
     </footer>
   )
