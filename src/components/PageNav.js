@@ -2,7 +2,9 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import parse from "html-react-parser"
 
-const PageNavigation = ( { previous, next, post } ) => {
+const PageNavigation = ( { data: { previous, next, post } }) => {
+
+  console.log( previous, next );
 
   return (
     <nav className="blog-post-nav">
