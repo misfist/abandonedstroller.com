@@ -29,7 +29,7 @@ const Layout = ({ children, title, description, bodyClass }) => {
 
       <Header />
 
-      <main id="site-content" role="main">
+      <main id="site-content" className="section-inner" role="main">
         {children}
       </main>
 
