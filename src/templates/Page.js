@@ -37,29 +37,7 @@ export const pageQuery = graphql`
   ) {
     # selecting the current post by id
     post: wpPage(id: { eq: $id }) {
-      id
-      content
-      title
-      date(formatString: "MMMM DD, YYYY")
-      nodeType
-      featuredImage {
-        node {
-          altText
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 1600, quality: 80) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
-              gatsbyImageData(
-                blurredOptions: {
-                  toFormat: AUTO
-                }, 
-                placeholder: BLURRED
-              )
-            }
-          }
-        }
-      }
+      ...PageContent
     }
 
     # this gets us the previous post by id (if it exists)

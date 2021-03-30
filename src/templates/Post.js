@@ -12,13 +12,14 @@ import Content from "../components/Content"
 import PageNav from '../components/PageNav'
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
+  console.log( 'BlogPostTemplate', previous, next, post );
   const featuredImage = {
     fluid: post.featuredImage?.node?.localFile?.childImageSharp?.fluid,
     alt: post.featuredImage?.node?.alt || ``,
   }
 
   return (
-    <Layout title={post.title} description={post.excerpt} bodyClass={`single-page`}>
+    <Layout title={post.title} description={post.excerpt} bodyClass={`single-post`}>
 
       <Content post={post} />
 
@@ -39,33 +40,7 @@ export const pageQuery = graphql`
   ) {
     # selecting the current post by id
     post: wpPost(id: { eq: $id }) {
-      id
-      excerpt
-      content
-      title
-      date(formatString: "MMMM DD, YYYY")
-
-      isSticky
-      nodeType
-
-      featuredImage {
-        node {
-          altText
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 1600, quality: 80) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
-              gatsbyImageData(
-                blurredOptions: {
-                  toFormat: AUTO
-                }, 
-                placeholder: BLURRED
-              )
-            }
-          }
-        }
-      }
+      ...PostContent
     }
 
     # this gets us the previous post by id (if it exists)

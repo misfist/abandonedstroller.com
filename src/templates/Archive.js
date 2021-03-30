@@ -26,6 +26,7 @@ const BlogIndex = ({
     <Layout isHomePage title="Home" bodyClass={`archive`}>
 
       <Gallery posts={posts} title="All Strollers" />
+      
       <Pagination pageContext={pageContext} pathPrefix="/" />
 
     </Layout>
@@ -42,32 +43,7 @@ export const pageQuery = graphql`
       skip: $offset
     ) {
       nodes {
-        id
-        databaseId
-        title
-        excerpt
-        date(formatString: "MMMM DD, YYYY")
-        slug
-        isSticky
-        featuredImage {
-          node {
-            title
-            caption
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 1600, quality: 80) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                }
-                gatsbyImageData(
-                  blurredOptions: {
-                    toFormat: AUTO
-                  }, 
-                  placeholder: BLURRED
-                )
-              }
-            }
-          }
-        }
+        ...PostContent
       }
     }
   }
