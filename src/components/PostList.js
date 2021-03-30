@@ -103,17 +103,6 @@ const PostList = ( { posts, pageContext } ) => {
         )}
         
       </div>
-      {/* <div className={`container`}>
-        <div className={`masonic`}>
-          <Masonry 
-            items={photos}
-            render={Card}
-            columnGutter={12}
-            columnWidth={300}
-            overscanBy={5}
-          />              
-        </div>
-      </div> */}
     </div>
   </div>
   )
