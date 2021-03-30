@@ -22,15 +22,20 @@ const Content = ( { post } ) => {
 
           {/* if we have a featured image for this post let's display it .featuredImage.node.localFile.childImageSharp.gatsbyImageData*/}
           {post?.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData && (
-            <GatsbyImage
-              image={post.featuredImage.node.localFile.childImageSharp.gatsbyImageData}
-              alt={post.featuredImage.node.altText}
-            />
+            <figure className="featured-image">
+              <GatsbyImage
+                image={post.featuredImage.node.localFile.childImageSharp.gatsbyImageData}
+                alt={post.featuredImage.node.altText}
+              />
+              {post?.featuredImage?.node?.caption && (
+                <figcaption className="caption" dangerouslySetInnerHTML={{ __html: post.featuredImage.node.caption }} />
+              )}
+            </figure>
           )}
         </header>
 
         {!!post.content && (
-          <div itemProp="articleBody" dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div className="entry-content" itemProp="articleBody" dangerouslySetInnerHTML={{ __html: post.content }} />
         )}
 
       </article>

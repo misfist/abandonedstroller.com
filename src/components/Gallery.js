@@ -51,13 +51,11 @@ const GalleryComponent = ( { posts, pageContext } ) => {
   }
 
   return (
-    <div className="main-content">
-    <div className="container">
+    <article className="gallery">
       <header className="page-header">
         {/* <h1 className="page-title">{title}</h1> */}
       </header>
-      <div className={`page-content section-inner`}>
-        {/* <pre>{JSON.stringify(images, null, 4)}</pre> */}
+      <div className={`page-content`}>
         <Gallery 
           photos={photos}
           renderImage={({ photo, index, margin, direction, top, left }) => {
@@ -85,6 +83,7 @@ const GalleryComponent = ( { posts, pageContext } ) => {
                 <GatsbyImage 
                   image={photo.gatsbyImageData}
                   alt={photo.title}
+                  direction={"column"}
                 />
                 <figcaption className="bottom-right overlay-text">
                     <span className="title">{photo.title}</span>
@@ -116,8 +115,7 @@ const GalleryComponent = ( { posts, pageContext } ) => {
         )}
         
       </div>
-    </div>
-  </div>
+    </article>
   )
 }
 
