@@ -11,11 +11,13 @@ const GalleryComponent = ( { posts, pageContext } ) => {
 
   const photos = images.map( photo => {    
     const caption = photo.featuredImage.node.caption ? photo.featuredImage.node.caption : ''
+    const strippedCaption = photo.featuredImage.node.caption ? caption.replace(/(<([^>]+)>)/gi, "") : ''
     return (
       {
         gatsbyImageData: photo.featuredImage.node.localFile.childImageSharp.gatsbyImageData,
         title: photo.title,
         caption: caption,
+        strippedCaption: strippedCaption,
         alt: photo.title,
         src: photo.featuredImage.node.localFile.childImageSharp.fluid.src,
         sizes: photo.featuredImage.node.localFile.childImageSharp.fluid.sizes,
@@ -106,7 +108,7 @@ const GalleryComponent = ( { posts, pageContext } ) => {
             nextSrc={photos[(currentImage + 1) % photos.length].src}
             prevSrc={photos[(currentImage + photos.length - 1) % photos.length].src}
             imageTitle={photos[currentImage].title}
-            imageCaption={photos[currentImage].caption}
+            imageCaption={photos[currentImage].strippedCaption}
             onCloseRequest={closeLightbox}
             onMovePrevRequest={movePrevRequest}
             onMoveNextRequest={moveNextRequest}
