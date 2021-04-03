@@ -1,6 +1,16 @@
 import React, { useState, useRef } from 'react'
 import Alert from './Alert'
 
+function encode(data) {
+  const formData = new FormData()
+
+  for (const key of Object.keys(data)) {
+    formData.append(key, data[key])
+  }
+
+  return formData
+}
+
 const ContributeForm = () => {
   const [formIsSubmitted, setformIsSubmitted] = useState( false )
   const [formState, setFormState] = useState( null )
@@ -37,14 +47,21 @@ const ContributeForm = () => {
     setFormState( { ...formState, [event.target.name]: event.target.value } )
   }
 
+  const handleAttachment = ( event ) => {
+    setFormState( { ...formState, [event.target.name]: event.target.files[0] } )
+  }
+
   const handleSubmit = ( event ) => {
     event.preventDefault()
+    const form = event.target;
     
-    let formData = new FormData( event.target )
     fetch('/', {
       method: 'POST',
       headers: { "Content-Type": "multipart/form-data" },
-      body: new URLSearchParams(formData).toString()
+      body: encode({
+        'form-name': form.getAttribute('name'),
+        ...formState
+      })
     })
     .then( ( response ) => {
       if( response.status == 200 ) {
@@ -81,7 +98,7 @@ const ContributeForm = () => {
         <label htmlFor="comments">Comments</label>
         <textarea name="comments" onChange={handleChange} />
         <label htmlFor="picture">Picture</label>
-        <input type="file" aria-required="true" name="picture" required placeholder="Please add your photo" />
+        <input type="file" aria-required="true" name="picture"  onChange={handleAttachment} required placeholder="Please add your photo" />
         <div className="recap" data-netlify-recaptcha="true"></div>
         <button type="submit">Send</button>
         <input type="hidden" name="form-name" value="contribute" />
