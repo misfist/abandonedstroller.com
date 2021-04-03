@@ -24,7 +24,9 @@ export const fragments = graphql`
     excerpt
     content
     title
-    date(formatString: "MMMM DD, YYYY")
+    slug
+    dateGmt(formatString: "YYYY-MM-DD")
+    date(fromNow: true)
 
     isSticky
     nodeType
@@ -48,6 +50,7 @@ export const fragments = graphql`
     content
     title
     date(formatString: "MMMM DD, YYYY")
+    slug
 
     nodeType
 

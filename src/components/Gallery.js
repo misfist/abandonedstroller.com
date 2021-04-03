@@ -7,24 +7,41 @@ import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
 
 const GalleryComponent = ( { posts, pageContext } ) => {
-  const images = posts.filter( post => post.featuredImage.node.localFile != undefined  );
+  const dateRange = ( dateA, dateB ) => {
+    const diffTime = Math.abs( dateA - dateB );
+    const diffDays = Math.ceil( diffTime / ( 1000 * 60 * 60 * 24 ) );
+    return diffDays;
+  }
+
+  const currentDate = new Date();
+  const images = posts.filter( post => post.featuredImage.node.localFile != undefined );
 
   const photos = images.map( photo => {    
     const caption = photo.featuredImage.node.caption ? photo.featuredImage.node.caption : ''
     const strippedCaption = photo.featuredImage.node.caption ? caption.replace(/(<([^>]+)>)/gi, "") : ''
+    const photoDate = new Date( photo.dateGmt )
+    const diffDays = dateRange( currentDate, photoDate )
+    const isNew =  diffDays <= 180
+    const isContributed = photo.categories.nodes.some( category => category.slug === 'contributed' );
+    const isFeatured = photo.categories.nodes.some( category => category.slug === 'featured' );
+
     return (
       {
         gatsbyImageData: photo.featuredImage.node.localFile.childImageSharp.gatsbyImageData,
         title: photo.title,
+        date: photo.date,
         caption: caption,
-        strippedCaption: strippedCaption,
+        strippedCaption: caption ? `${strippedCaption} - ${photo.date}` : '',
         alt: photo.title,
         src: photo.featuredImage.node.localFile.childImageSharp.fluid.src,
         sizes: photo.featuredImage.node.localFile.childImageSharp.fluid.sizes,
         srcSet: photo.featuredImage.node.localFile.childImageSharp.fluid.srcSet,
         height: photo.featuredImage.node.localFile.childImageSharp.gatsbyImageData.height,
         width: photo.featuredImage.node.localFile.childImageSharp.gatsbyImageData.width,
-        isSticky: photo.isSticky
+        isSticky: photo.isSticky,
+        isFeatured: isFeatured,
+        isNew: isNew,
+        isContributed: isContributed,
       }
     )
   } )
@@ -53,7 +70,7 @@ const GalleryComponent = ( { posts, pageContext } ) => {
   }
 
   return (
-    <article className="gallery">
+    <article className="gallery section-inner">
       <header className="page-header">
         {/* <h1 className="page-title">{title}</h1> */}
       </header>
@@ -64,9 +81,25 @@ const GalleryComponent = ( { posts, pageContext } ) => {
             const classes = classNames(
               'image-item',
               {
-               ' is-sticky': photo.isSticky
+               'is-featured': photo.isFeatured,
+               'is-contributed': photo.isContributed,
+               'is-new': photo.isNew
               }
             );
+            const getAriaLabel = () => {
+              let label = photo.title;
+              if( photo.isContributed ) {
+                label = `Contributed Photo`
+              }
+              else if( photo.isNew ) {
+                label = `New Photo`
+              }
+              else if( photo.isFeatured ) {
+                label = `Featured Photo`
+              }
+              return ( label )
+            }
+            const ariaLabel = getAriaLabel()
             return (
               <figure
                 className={classes}
@@ -78,6 +111,7 @@ const GalleryComponent = ( { posts, pageContext } ) => {
                   left,
                   top
                 }}
+                aria-label={ariaLabel}
                 onClick={ ( event ) => {
                   openLightbox( photo, index )
                 } }
@@ -86,17 +120,29 @@ const GalleryComponent = ( { posts, pageContext } ) => {
                   image={photo.gatsbyImageData}
                   alt={photo.title}
                   direction={"column"}
+                  aria-label={ariaLabel}
                 />
                 <figcaption className="bottom-right overlay-text">
                     <span className="title">{photo.title}</span>
                     <span className="caption">{parse( photo.caption )} </span>
+                    <span className="date" data-date><time dateTime={photo.dateGmt}>{photo.date}</time></span>
                   </figcaption>
 
-                  { photo.isSticky && (
-                  <div className="star-wrapper">
-                    <span className="star"></span>
-                  </div>
+                  { photo.isNew && (
+                    <div className="new-wrapper">
+                      <span className="new"><span className="screen-reader-text">New</span></span>
+                    </div>
                   ) }
+                  { photo.isContributed && (
+                    <div className="contributed-wrapper">
+                      <span className="contributed"><span className="screen-reader-text">Contributed</span></span>
+                    </div>
+                  ) }
+                  {/* { photo.isFeatured && (
+                  <div className="featured-wrapper">
+                    <span className="featured"><span className="screen-reader-text">Featured</span></span>
+                  </div>
+                  ) } */}
               </figure>
               
             )
