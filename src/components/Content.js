@@ -2,6 +2,7 @@ import React from 'react'
 import { GatsbyImage } from "gatsby-plugin-image"
 import slugify from 'slugify'
 import classNames from 'classnames'
+import ContributeForm from './ContributeForm'
 
 const Content = ( { post } ) => {
   const nodeType = post?.contentType?.node?.nodeType || '';
@@ -34,9 +35,13 @@ const Content = ( { post } ) => {
           )}
         </header>
 
-        {!!post.content && (
-          <div className="entry-content" itemProp="articleBody" dangerouslySetInnerHTML={{ __html: post.content }} />
-        )}
+        { post.slug === 'contribute' ? (
+          <ContributeForm />
+        ) : (
+          !!post.content && (
+            <div className="entry-content" itemProp="articleBody" dangerouslySetInnerHTML={{ __html: post.content }} />
+          )      
+        ) }
 
       </article>
   )
