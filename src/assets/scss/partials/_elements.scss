@@ -240,7 +240,7 @@
   }
 
 .contribute-form {
-	margin: 2rem auto;
+	margin-top: 2rem;
 }
 
 form {
@@ -249,7 +249,7 @@ form {
 	margin-right: auto;
 	margin-left: auto;
 	width: 100%;
-	max-width: $site__width_lg;
+	
 	
 	label,
 	input,
@@ -258,15 +258,16 @@ form {
 		width: 100%;
 	}
 
-	input {
-		padding: .25rem;
-	}
-
 	input[type="text"],
 	input[type="email"],
 	textarea {
+		padding: .5rem;
 		margin-bottom: .5rem;
 		border: 1px solid $color__white;
+	}
+
+	input[type="file"] {
+		max-height: 50%;
 	}
 
 	button {

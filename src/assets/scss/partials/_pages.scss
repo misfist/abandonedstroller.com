@@ -1,0 +1,14 @@
+.page-contribute {
+    .entry-content {
+        > p {
+            &:first-of-type {
+                font-size: $font__size-md;
+            }
+        }
+    }
+
+    article {
+        margin: 2rem auto;
+        max-width: $site__width_lg;
+    }
+}
