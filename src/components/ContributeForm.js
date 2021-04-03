@@ -20,7 +20,6 @@ const ContributeForm = () => {
       type: 'success',
       dismissible: true
     } )
-    console.log( response, responseProps );
   }
 
   const handleError = ( event, error ) => {
@@ -36,7 +35,6 @@ const ContributeForm = () => {
 
   const handleChange = ( event ) => {
     setFormState( { ...formState, [event.target.name]: event.target.value } )
-    console.log( event, formState, message )
   }
 
   const handleSubmit = ( event ) => {
