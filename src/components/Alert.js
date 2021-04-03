@@ -8,7 +8,6 @@ const Alert = ( { props: { message, type, dismissible } } ) => {
   const handleClose = ( event ) => {
     setAlertOpenState(false)
     event.target.classList.add( 'closed' );
-    console.log( message, type, dismissible )
   }
 
   const classes = classNames(
