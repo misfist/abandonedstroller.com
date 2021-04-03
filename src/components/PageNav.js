@@ -4,10 +4,8 @@ import parse from "html-react-parser"
 
 const PageNavigation = ( { data: { previous, next, post } }) => {
 
-  console.log( previous, next );
-
   return (
-    <nav className="blog-post-nav">
+    <nav className="blog-post-nav  section-inner">
         <ul
           style={{
             display: `flex`,

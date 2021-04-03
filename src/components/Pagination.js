@@ -8,7 +8,7 @@ const Pagination = ({ pageContext, pathPrefix }) => {
   const pages = [...Array( totalPages )];
   
   return (
-    <nav className="pagination" role="navigation">
+    <nav className="pagination section-inner" role="navigation">
       <ul className="navbar navbar-menu">
         {previousPagePath && (
           <li className="navbar-item">

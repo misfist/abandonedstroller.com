@@ -6,9 +6,6 @@ import Seo from './Seo';
 import Header from "./Header"
 import Footer from "./Footer"
 
-import Menu from './Menu'
-
-
 const Layout = ({ children, title, description, bodyClass }) => {
   const slug = slugify( title, { lower: true } );
 
@@ -29,7 +26,7 @@ const Layout = ({ children, title, description, bodyClass }) => {
 
       <Header />
 
-      <main id="site-content" className="section-inner" role="main">
+      <main id="site-content" className="main-content" role="main">
         {children}
       </main>
 

@@ -14,7 +14,7 @@ const Header = ({ pageContext, toggleBackdrop, ...props }) => {
     }
   `)
   return (
-    <header id="site-header" className="header-footer-group" role="banner">
+    <header id="site-header" className="header-footer-group main-header" role="banner">
       <div className="header-inner section-inner">
         <div className="header-titles-wrapper">
           <h1 className="site-title">

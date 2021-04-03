@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 
 const Footer = ({}) => {
   return (
-    <footer id="site-footer" role="contentinfo" className="header-footer-group">
+    <footer id="site-footer" role="contentinfo" className="header-footer-group main-footer">
       <div className="section-inner">
         <div className="footer-credits">
           <p className="footer-copyright">
@@ -34,14 +34,14 @@ const Footer = ({}) => {
         </div>
 
         
-          <div className="to-the-top-wrapper">
+          {/* <div className="to-the-top-wrapper">
             <a className="to-the-top-link" aria-label="Scroll to Top" href="#site-header">
               <span className="screen-reader-text">To the top{" "}</span>
               <span className="arrow" aria-hidden="true">
                 ↑
               </span>
             </a>
-          </div>
+          </div> */}
         
       </div>
     </footer>
