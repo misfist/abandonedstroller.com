@@ -71,20 +71,24 @@ const ContributeForm = () => {
           action="/contribute"
           data-netlify="true" 
           data-netlify-honeypot="bot-field"
+          data-netlify-recaptcha="true"
           onSubmit={handleSubmit}
       >
         <label htmlFor="name">Name</label>
         <input type="text" name="name" onChange={handleChange}/>
         <label htmlFor="email">Email</label>
-        <input type="email" name="email" aria-required="true" onChange={handleChange} />
+        <input type="email" name="email" aria-required="true" required onChange={handleChange} />
         <label htmlFor="subject">Subject</label>
         <input type="text" name="subject" onChange={handleChange} />
         <label htmlFor="comments">Comments</label>
         <textarea name="comments" onChange={handleChange} />
         <label htmlFor="picture">Picture</label>
-        <input type="file" aria-required="true" name="picture" />
+        <input type="file" aria-required="true" name="picture" required placeholder="Please add your photo" />
+        <div className="recap" data-netlify-recaptcha="true"></div>
         <button type="submit">Send</button>
         <input type="hidden" name="form-name" value="contribute" />
+        <label htmlFor="bot-field" className="hidden">Don’t fill this out if you’re human:</label>
+        <input className="hidden" name="bot-field" /> 
       </form>
     </div>
   )
