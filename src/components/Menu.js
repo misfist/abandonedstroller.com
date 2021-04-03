@@ -5,8 +5,9 @@ import UniversalLink from "./UniversalLink"
 const Menu = () => {
   const { wpMenu } = useStaticQuery(graphql`
     {
-      wpMenu(slug: { eq: "primary" }) {
+      wpMenu(slug: { eq: "main-menu" }) {
         name
+        slug
         menuItems {
           nodes {
             label
@@ -33,7 +34,7 @@ const Menu = () => {
       aria-label="Horizontal"
       role="navigation"
     >
-      <ul className="primary-menu reset-list-style">
+      <ul className="primary-menu menu">
         {wpMenu.menuItems.nodes.map((menuItem, i) => {
           const path = menuItem?.connectedNode?.node?.uri ?? menuItem.url
 
@@ -44,13 +45,13 @@ const Menu = () => {
               id={itemId}
               key={i + menuItem.url}
               className={
-                "menu-item menu-item-type-custom menu-item-object-custom menu-item-home " +
+                "menu-item" +
                 itemId
               }
             >
               <UniversalLink
                 to={path}
-                activeClassName={"current-menu-item current_page_item"}
+                activeClassName={"active"}
               >
                 {menuItem.label}
               </UniversalLink>
