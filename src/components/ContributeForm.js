@@ -74,8 +74,8 @@ const ContributeForm = () => {
           data-netlify-recaptcha="true"
           onSubmit={handleSubmit}
       >
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" onChange={handleChange}/>
+        <label htmlFor="fullname">Name</label>
+        <input type="text" name="fullname" onChange={handleChange}/>
         <label htmlFor="email">Email</label>
         <input type="email" name="email" aria-required="true" required onChange={handleChange} />
         <label htmlFor="subject">Subject</label>
