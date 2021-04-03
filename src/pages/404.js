@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 
 const NotFoundPage = () => (
   <Layout title="404" bodyClass={`404`}>
-    <article className={classes} itemScope itemType="http://schema.org/Article">
+    <article className='404' itemScope itemType="http://schema.org/Article">
       <header className="entry-header">
         <h1 className="entry-title" itemProp="headline">
           Not Found
