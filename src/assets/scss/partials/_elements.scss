@@ -22,11 +22,11 @@
 		cursor: pointer;
 		transition: transform .5s ease-in-out;
 		overflow: hidden;
-		filter: saturate(30%);
+		filter: saturate(80%);
 
 		&.is-sticky {
 			filter: brightness(1.2);
-			filter: saturate(100%);
+			filter: saturate(120%);
 
 			&:hover {
 				filter: brightness(1.2);
@@ -237,7 +237,7 @@
 	*:last-child {
 	  margin-bottom: 0;
 	}
-  }
+}
 
 .contribute-form {
 	margin-top: 2rem;
@@ -245,17 +245,18 @@
 
 form {
 	display: flex;
-	flex-direction: column;
+	flex-wrap: wrap;
 	margin-right: auto;
 	margin-left: auto;
 	width: 100%;
 	
-	
 	label,
 	input,
-	textarea {
+	textarea,
+	.recap {
 		border-radius: 0;
 		width: 100%;
+		max-width: 100%;
 	}
 
 	input[type="text"],
@@ -267,11 +268,12 @@ form {
 	}
 
 	input[type="file"] {
-		max-height: 50%;
+		max-width: calc( #{$site__width_lg} / 2 );
 	}
 
 	button {
 		align-self: center;
+		margin: .75rem auto;
 		padding: .5rem 1.25rem;
 		border-top: 1px solid $color__black-90;
 		border-right: 1px solid $color__black-90;

@@ -8,7 +8,16 @@
     }
 
     article {
-        margin: 2rem auto;
-        max-width: $site__width_lg;
+        padding: 0 1rem;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 90%;
+    }
+
+    @include breakpoint(lg) {
+        article {
+            padding: 0;
+            max-width: $site__width_lg;
+        }
     }
 }
