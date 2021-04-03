@@ -246,13 +246,16 @@
 form {
 	display: flex;
 	flex-direction: column;
+	margin-right: auto;
+	margin-left: auto;
 	width: 100%;
 	max-width: $site__width_lg;
-
+	
 	label,
 	input,
 	textarea {
 		border-radius: 0;
+		width: 100%;
 	}
 
 	input {
@@ -264,23 +267,22 @@ form {
 	textarea {
 		margin-bottom: .5rem;
 		border: 1px solid $color__white;
-
 	}
 
 	button {
 		align-self: center;
 		padding: .5rem 1.25rem;
-		border-top: none;
-		border-right: none;
-		border-left: none;
+		border-top: 1px solid $color__black-90;
+		border-right: 1px solid $color__black-90;
+		border-left: 3px solid $color__black-90;
 		color: $color__white;
-		background-color: transparent;
-		border-bottom: 2px solid $color__white;
+		background-color: $color__black-90;
+		border-bottom: 3px solid $color__secondary;
 		text-transform: uppercase;
 
 		&:hover {
-			background-color: rgba( $color__white, .1 );
-			border-bottom-color: $color__secondary;
+			background-color: transparent;
+			border-color: $color__white;
 		}
 	}
 }
