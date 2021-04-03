@@ -219,7 +219,7 @@
 	}
 }
 
-@mixin star( $color: $color__secondary ) {
+@mixin star( $color: $color__secondary, $size: 20px ) {
 	position: relative;
 	
 	display: inline-block;
@@ -235,7 +235,7 @@
 	border-left:   .3em solid transparent;
   
 	/* Controls the size of the stars. */
-	font-size: 24px;
+	font-size: $size;
 	
 	&:before, 
 	&:after {

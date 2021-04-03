@@ -21,7 +21,6 @@
 		position: relative;
 		cursor: pointer;
 		transition: transform .5s ease-in-out;
-		// box-shadow: $effect__drop-shadow;
 		overflow: hidden;
 		filter: saturate(30%);
 
@@ -68,20 +67,63 @@
 		background: rgb( 0, 0, 0 ); /* fallback color */
 		background: rgba($color__black, 0.6);
 		padding: .5rem;
+		@include flex;
+		justify-content: space-between;
+
 	}
 
-	.caption {
+	.title {
+		width: 100%;
+	}
+
+	.caption,
+	.date {
+		display: block;
 		font-family: $font__main;
 		font-size: $font__size-sm;
 	}
 
-	.star-wrapper {
+	.caption {
+		margin-right: .5rem;
+		p {
+			margin-top: 0;
+		}
+	}
+
+	.title + .caption {
+		margin-top: .5rem;
+	}
+
+	.date {
+		text-align: right;
+		margin-right: 0;
+		margin-left: auto;
+		margin-top: .5rem;
+	}
+
+	.featured-wrapper,
+	.new-wrapper,
+	.contributed-wrapper  {
 		position: absolute;
 		top: .25rem;
+	}
+	.featured-wrapper {
 		right: .25rem;
 	}
-	.star {
+	.new-wrapper {
+		right: .25rem;
+	}
+	.contributed-wrapper {
+		right: .25rem;
+	}
+	.contributed {
 		@include star;
+	}
+	.featured {
+		@include star( $color__accent );
+	}
+	.new {
+		@include star( $color__highlight );
 	}
 	  
 }
@@ -89,6 +131,25 @@
 .ReactModalPortal {
 	.ril-toolbar-left {
 		font-family: $font__headings;
+	}
+}
+
+.menu {
+	@include no-bullets;
+	@include flex;
+	text-transform: uppercase;
+
+	.active {
+		border-bottom-color: $color__secondary;
+	}
+
+	&.primary-menu {
+		justify-content: flex-end;
+		margin-top: 1rem;
+
+		a {
+			padding: .25rem 0;
+		}
 	}
 }
 
@@ -171,11 +232,52 @@
 }
 
 #gatsby-focus-wrapper {
-	// leave room for the "scroll track"
-	// padding: 0 3rem;
 	position: relative;
 
 	*:last-child {
 	  margin-bottom: 0;
 	}
   }
+
+form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: $site__width_lg;
+	margin: 2rem auto;
+
+	label,
+	input,
+	textarea {
+		border-radius: 0;
+	}
+
+	input {
+		padding: .25rem;
+	}
+
+	input[type="text"],
+	input[type="email"],
+	textarea {
+		margin-bottom: .5rem;
+		border: 1px solid $color__white;
+
+	}
+
+	button {
+		align-self: center;
+		padding: .5rem 1.25rem;
+		border-top: none;
+		border-right: none;
+		border-left: none;
+		color: $color__white;
+		background-color: transparent;
+		border-bottom: 2px solid $color__white;
+		text-transform: uppercase;
+
+		&:hover {
+			background-color: rgba( $color__white, .1 );
+			border-bottom-color: $color__secondary;
+		}
+	}
+}

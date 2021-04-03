@@ -4,7 +4,7 @@ body {
     font-size: 14px;
     line-height: 1.3;
     color: $color__text-main;
-    background-color: $color__primary;
+    background-color: $color__background-body;
 
     @include breakpoint(md) {
         font-size: 16px;
@@ -44,19 +44,15 @@ h1 {
     a {
         border-bottom: none;
     }
+
+    &.entry-title,
+    &.page-title,
+    &.site-title {
+        margin-top: 0
+    }
 }
 
 .screen-reader-text {
     @include visually-hidden;
 }
 
-.section-inner {
-    padding: var(--padding__md );
-    width: 100%;
-    max-width: 90%;
-    margin: 0 auto;
-
-    @include breakpoint( 2x-lg ) {
-        max-width: $site__max-width;
-    }
-}

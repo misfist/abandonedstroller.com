@@ -19,7 +19,8 @@ $black:    $color__black;
 $color__palette: (
     primary: $color__black-90,
     secondary: #cc0000,
-    accent: $color__black-50,
+    accent: #007489,
+    highlight: #ffe700,
     error: rgba(255, 20, 147, 1),
     dark-gray: $color__black-80,
     gray: $color__black-60,
@@ -29,6 +30,7 @@ $color__palette: (
 $color__primary: map-get( $color__palette, primary );
 $color__secondary: map-get( $color__palette, secondary );
 $color__accent: map-get( $color__palette, accent );
+$color__highlight: map-get( $color__palette, highlight );
 $color__error: map-get( $color__palette, error );
 $color__dark-gray: map-get( $color__palette, dark-gray );
 $color__gray: map-get( $color__palette, gray );
@@ -44,11 +46,12 @@ $color__background-pre: #eee;
 $color__background-ins: $color__white;
 $color__background-input: $color__white;
 
-$color__text-main: $color__white;
+$color__foreground-body: $color__white;
+$color__text-main: $color__foreground-body;
 $color__text-secondary: $color__gray;
-$color__link: $color__white;
+$color__link: $color__text-main;
 $color__text-muted: $color__gray;
-$color__headings: $color__primary;
+$color__headings: $color__text-main;
 $color__text-screen: $color__dark-gray;
 $color__text-input: $color__dark-gray;
 $color__text-input-focus: $color__black;
@@ -95,7 +98,7 @@ $font__size-base-sm: calc( #{$font__size-base} * .8 );
 $font__size-base-lg: calc( #{$font__size-base} * 1.2 );
  
 $font__sizes: (
-    sm: .9rem,
+    sm: .8rem,
     normal: 1rem,
     md: 1.25rem,
     intro: 1.8rem, // slightly bigger
