@@ -21,7 +21,8 @@ $color__palette: (
     secondary: #cc0000,
     accent: #007489,
     highlight: #ffe700,
-    error: rgba(255, 20, 147, 1),
+    error: #f44336,
+    success: #4caf50,
     dark-gray: $color__black-80,
     gray: $color__black-60,
     light-gray: $color__black-20,
@@ -32,6 +33,7 @@ $color__secondary: map-get( $color__palette, secondary );
 $color__accent: map-get( $color__palette, accent );
 $color__highlight: map-get( $color__palette, highlight );
 $color__error: map-get( $color__palette, error );
+$color__success: map-get( $color__palette, success );
 $color__dark-gray: map-get( $color__palette, dark-gray );
 $color__gray: map-get( $color__palette, gray );
 $color__light-gray: map-get( $color__palette, light-gray );

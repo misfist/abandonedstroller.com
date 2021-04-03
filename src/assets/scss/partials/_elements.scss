@@ -239,12 +239,15 @@
 	}
   }
 
+.contribute-form {
+	margin: 2rem auto;
+}
+
 form {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 	max-width: $site__width_lg;
-	margin: 2rem auto;
 
 	label,
 	input,
@@ -279,5 +282,30 @@ form {
 			background-color: rgba( $color__white, .1 );
 			border-bottom-color: $color__secondary;
 		}
+	}
+}
+
+.alert {
+	max-height: 500px;
+	padding: .5rem;
+	opacity: 1;
+	color: $color__foreground-body;
+	display: flex;
+	align-items: center;
+	margin-bottom: .75rem;
+
+	&-success {
+		background-color: $color__success;
+	}
+
+	&-error {
+		background-color: $color__error;
+	}
+
+	&.closed {
+		max-height: 0;
+		opacity: 0;
+		overflow: hidden;
+		margin-bottom: 0;
 	}
 }
