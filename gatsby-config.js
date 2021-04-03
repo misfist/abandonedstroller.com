@@ -10,7 +10,7 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Abandoned Strollers`,
-    description: `Where have all the children gone...`,
+    description: `Where have all the children gone.?`,
     author: `@misfist`,
     siteUrl: process.env.WEBSITE_URL,
     social: [
@@ -33,14 +33,6 @@ module.exports = {
         url:
           process.env.WPGRAPHQL_URL ||
           `https://editor.abandonedstroller.com/graphql`,
-        // The base url to your WP site.
-        baseUrl: process.env.WP_BASE_URL,
-        // WP.com sites set to true, WP.org set to false
-        hostingWPCOM: false,
-        // The protocol. This can be http or https.
-        protocol: 'https',
-        // Use 'Advanced Custom Fields' Wordpress plugin
-        useACF: false,
         auth: {},
         // Set to true to debug endpoints on 'gatsby build'
         verboseOutput: false,
@@ -77,6 +69,20 @@ module.exports = {
         },
       },
     },
+    {
+      // See https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/?=gatsby-plugin-manifest
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Abandoned Stroller Project`,
+        short_name: `Abandoned Strollers`,
+        description: `Where have all the children gone.?`,
+        lang: `en`,
+        start_url: `/`,
+        background_color: `#000`,
+        display: `browser`,
+        icon: `src/assets/images/stroller.png`,
+      },
+    },
     `gatsby-plugin-image`,
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
@@ -96,19 +102,7 @@ module.exports = {
     },
     {
       // See https://www.gatsbyjs.com/plugins/gatsby-plugin-sass/
-      resolve: `gatsby-plugin-sass`,
-      // options: {
-      //   sassOptions: {
-      //     includePaths: [`${__dirname}/src/assets/scss`],
-      //   },
-      //   options: {
-      //     implementation: require("node-sass"),
-      //   },
-      //   cssLoaderOptions: {
-      //     camelCase: false,
-      //   },
-      //   // useResolveUrlLoader: false,
-      // },
+      resolve: `gatsby-plugin-sass`
     },
     {
       // See https://www.gatsbyjs.com/plugins/gatsby-plugin-htaccess/
