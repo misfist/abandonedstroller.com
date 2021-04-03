@@ -24,7 +24,7 @@ const ContributeForm = () => {
 
   const handleSuccess = ( event, response ) => {
     setformIsSubmitted( true );
-    setFormState( 'success' );
+    setFormStatus( 'success' );
     setResponseProps( {
       message: successMessage,
       type: 'success',
@@ -34,7 +34,7 @@ const ContributeForm = () => {
 
   const handleError = ( event, error ) => {
     setformIsSubmitted( true );
-    setFormState( 'error' );
+    setFormStatus( 'error' );
     setResponseProps( {
       message: errorMessage,
       type: 'error',
