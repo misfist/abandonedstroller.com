@@ -10,17 +10,11 @@ import Content from "../components/Content"
 import PageNav from '../components/PageNav'
 
 const PageTemplate = ({ data: { previous, next, post } }) => {
-  const featuredImage = {
-    fluid: post.featuredImage?.node?.localFile?.childImageSharp?.fluid,
-    alt: post.featuredImage?.node?.alt || ``,
-  }
 
   return (
     <Layout title={post.title} description={post.excerpt} bodyClass={`single-page`}>
 
-      <Content post={{post}} />
-
-      <PageNav data={{ previous, next, post }} />
+      <Content post={post} />
 
     </Layout>
   )

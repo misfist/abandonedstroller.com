@@ -11,12 +11,7 @@ import Layout from "../components/Layout"
 import Content from "../components/Content"
 import PageNav from '../components/PageNav'
 
-const BlogPostTemplate = ({ data: { previous, next, post } }) => {
-  console.log( 'BlogPostTemplate', previous, next, post );
-  const featuredImage = {
-    fluid: post.featuredImage?.node?.localFile?.childImageSharp?.fluid,
-    alt: post.featuredImage?.node?.alt || ``,
-  }
+const PostTemplate = ({ data: { previous, next, post } }) => {
 
   return (
     <Layout title={post.title} description={post.excerpt} bodyClass={`single-post`}>
@@ -29,7 +24,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   )
 }
 
-export default BlogPostTemplate
+export default PostTemplate
 
 export const pageQuery = graphql`
   query BlogPostById(
