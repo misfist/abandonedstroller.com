@@ -30,8 +30,6 @@ const ContributeForm = () => {
       type: 'success',
       dismissible: true
     } )
-    event.target.classList.add( 'disable' );
-
     console.log( event, formState )
   }
 
