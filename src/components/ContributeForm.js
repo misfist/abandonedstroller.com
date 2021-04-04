@@ -12,7 +12,7 @@ function encode(data) {
 }
 
 const ContributeForm = () => {
-  const [formIsSubmitted, setformIsSubmitted] = useState( false )
+  const [formIsSubmitted, setFormIsSubmitted] = useState( false )
   const [formState, setFormState] = useState( null )
   const [formStatus, setFormStatus] = useState( null )
   const [responseProps, setResponseProps] = useState( {} )
@@ -23,17 +23,19 @@ const ContributeForm = () => {
   const errorMessage = 'Yikes. Something went wrong. Could you please try again?'
 
   const handleSuccess = ( event, response ) => {
-    setformIsSubmitted( true );
+    setFormIsSubmitted( true );
     setFormStatus( 'success' );
     setResponseProps( {
       message: successMessage,
       type: 'success',
       dismissible: true
     } )
+
+    console.log( event, responseProps )
   }
 
   const handleError = ( event, error ) => {
-    setformIsSubmitted( true );
+    setFormIsSubmitted( true );
     setFormStatus( 'error' );
     setResponseProps( {
       message: errorMessage,
@@ -98,7 +100,7 @@ const ContributeForm = () => {
         <label htmlFor="comments">Comments</label>
         <textarea name="comments" onChange={handleChange} />
         <label htmlFor="picture">Picture</label>
-        <input type="file" aria-required="true" name="picture"  onChange={handleAttachment} required placeholder="Please add your photo" />
+        <input type="file" aria-required="true" name="picture"  onChange={handleAttachment} placeholder="Please add your photo" />
         <div className="recap" data-netlify-recaptcha="true"></div>
         <button type="submit">Send</button>
         <input type="hidden" name="form-name" value="contribute" />
