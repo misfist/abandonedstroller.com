@@ -22,7 +22,7 @@ const ContributeForm = () => {
 
   const errorMessage = 'Yikes. Something went wrong. Could you please try again?'
 
-  const handleSuccess = ( event, response ) => {
+  const handleSuccess = ( response ) => {
     setFormIsSubmitted( true );
     setFormStatus( 'success' );
     setResponseProps( {
@@ -30,10 +30,10 @@ const ContributeForm = () => {
       type: 'success',
       dismissible: true
     } )
-    console.log( event, formState )
+    console.log( formState )
   }
 
-  const handleError = ( event, error ) => {
+  const handleError = ( error ) => {
     setFormIsSubmitted( true );
     setFormStatus( 'error' );
     setResponseProps( {
@@ -68,13 +68,13 @@ const ContributeForm = () => {
     })
     .then( ( response ) => {
       if( response.status == 200 ) {
-        handleSuccess( event, response )
+        handleSuccess( response )
       } else {
-        handleError( event, response )
+        handleError( response )
       }
     })
     .catch( ( error ) => { 
-      handleError( event, error )
+      handleError( error )
     })
   }
 
