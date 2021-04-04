@@ -30,8 +30,9 @@ const ContributeForm = () => {
       type: 'success',
       dismissible: true
     } )
+    event.target.classList.add( 'disable' );
 
-    console.log( event, responseProps )
+    console.log( event, formState )
   }
 
   const handleError = ( event, error ) => {
@@ -42,15 +43,17 @@ const ContributeForm = () => {
       type: 'error',
       dismissible: false
     } )
-    console.error( error, responseProps );
+    console.error( error, formState );
   }
 
   const handleChange = ( event ) => {
     setFormState( { ...formState, [event.target.name]: event.target.value } )
+    console.log( formState )
   }
 
   const handleAttachment = ( event ) => {
     setFormState( { ...formState, [event.target.name]: event.target.files[0] } )
+    console.log( formState )
   }
 
   const handleSubmit = ( event ) => {
