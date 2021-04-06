@@ -1,25 +1,25 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef  } from 'react'
+import { navigate } from 'gatsby'
 import Alert from './Alert'
 
-function encode(data) {
+function encode( data ) {
   const formData = new FormData()
 
-  for (const key of Object.keys(data)) {
-    formData.append(key, data[key])
+  for ( const key of Object.keys( data ) ) {
+    formData.append( key, data[key] )
   }
 
   return formData
 }
 
 const ContributeForm = () => {
-  const [formIsSubmitted, setFormIsSubmitted] = useState( false )
-  const [formState, setFormState] = useState( null )
+  const [formState, setFormState] = useState( {} )
   const [formStatus, setFormStatus] = useState( null )
+  const [formIsSubmitted, setFormIsSubmitted] = useState( false )
   const [responseProps, setResponseProps] = useState( {} )
-  const message = useRef( null );
+  const submit = useRef( null );
 
   const successMessage = 'Thanks so much for contributing!!'
-
   const errorMessage = 'Yikes. Something went wrong. Could you please try again?'
 
   const handleSuccess = ( response ) => {
@@ -30,7 +30,9 @@ const ContributeForm = () => {
       type: 'success',
       dismissible: true
     } )
-    console.log( formState )
+    console.log( 'handleSuccess', formState )
+
+    submit.current.classList.add( 'success' )
   }
 
   const handleError = ( error ) => {
@@ -41,22 +43,26 @@ const ContributeForm = () => {
       type: 'error',
       dismissible: false
     } )
-    console.error( error, formState );
+    console.error( 'handleError', error, formState )
+
+    submit.current.classList.add( 'error' )
   }
 
   const handleChange = ( event ) => {
     setFormState( { ...formState, [event.target.name]: event.target.value } )
-    console.log( formState )
+    console.log( 'handleChange', formState )
   }
 
   const handleAttachment = ( event ) => {
     setFormState( { ...formState, [event.target.name]: event.target.files[0] } )
-    console.log( formState )
+    console.log( 'handleAttachment', formState, event.target.getAttribute( 'accept' ) )
   }
 
   const handleSubmit = ( event ) => {
     event.preventDefault()
     const form = event.target;
+
+    console.log( 'handleSubmit', formState )
     
     fetch('/', {
       method: 'POST',
@@ -67,8 +73,10 @@ const ContributeForm = () => {
       })
     })
     .then( ( response ) => {
+      console.log( 'fetch.then=>response', response )
       if( response.status == 200 ) {
         handleSuccess( response )
+        navigate( form.getAttribute( 'action' ) )
       } else {
         handleError( response )
       }
@@ -84,13 +92,12 @@ const ContributeForm = () => {
         <Alert props={responseProps} />
       )}
       <form 
-          name="contribute" 
-          method="POST"
-          action="/contribute"
-          data-netlify="true" 
-          data-netlify-honeypot="bot-field"
-          data-netlify-recaptcha="true"
-          onSubmit={handleSubmit}
+        name="contribute" 
+        method="POST"
+        action="/contribute/"
+        data-netlify="true" 
+        data-netlify-honeypot="bot-field"
+        onSubmit={handleSubmit}
       >
         <label htmlFor="fullname">Name</label>
         <input type="text" name="fullname" onChange={handleChange}/>
@@ -101,12 +108,12 @@ const ContributeForm = () => {
         <label htmlFor="comments">Comments</label>
         <textarea name="comments" onChange={handleChange} />
         <label htmlFor="picture">Picture</label>
-        <input type="file" aria-required="true" name="picture"  onChange={handleAttachment} placeholder="Please add your photo" />
-        <div className="recap" data-netlify-recaptcha="true"></div>
-        <button type="submit">Send</button>
+        <input type="file" aria-required="true" name="picture" accept="image/*" placeholder="Please add your photo"  onChange={handleAttachment} />
+        <div className="submit-button"><button type="submit" name="submit-form" ref={submit}>Send</button></div>
+
         <input type="hidden" name="form-name" value="contribute" />
         <label htmlFor="bot-field" className="hidden">Don’t fill this out if you’re human:</label>
-        <input className="hidden" name="bot-field" /> 
+        <input className="hidden" name="bot-field" aria-hidden /> 
       </form>
     </div>
   )
