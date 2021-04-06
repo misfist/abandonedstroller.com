@@ -78,3 +78,6 @@ deploy-stage.sh
 *.sh
 
 renovate.json
+
+# Local Netlify folder
+.netlify
